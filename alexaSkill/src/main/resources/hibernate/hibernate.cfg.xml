@@ -1,13 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
-    "-//Hibernate/Hibernate Configuration DTD//EN"
-    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
- <hibernate-configuration>
-  <session-factory>
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/alexa_spring</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password"></property>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-  </session-factory>
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+	<property name="connection.provider_class">	org.hibernate.connection.C3P0ConnectionProvider</property>
+   	<property name="c3p0.minPoolSize">5</property>
+   	<property name="c3p0.timeout">1000</property>
+   	<property name="c3p0.acquire_increment">1</property> 
+	<property name="c3p0.idle_test_period">100</property> <!-- seconds --> 
+	<property name="c3p0.max_size">25</property> 
+	<property name="c3p0.max_statements">0</property> 
+	<property name="c3p0.min_size">50</property> 
+    	
+<!-- Database connection settings -->
+      <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+<property name="connection.url">jdbc:mysql://localhost:3306/alexa_spring?autoReconnect=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8</property>
+      <property name="connection.username">root</property>
+      <property name="connection.password">root</property>
+
+      <!-- JDBC connection pool (use the built-in) -->
+      <property name="connection.pool_size">10</property>
+
+      <!-- SQL dialect -->
+      <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+      <!-- Enable Hibernate's automatic session context management -->
+      <property name="current_session_context_class">thread</property>
+
+      <!-- Disable the second-level cache  -->
+      <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+      <!-- Echo all executed SQL to stdout -->
+      <property name="show_sql">false</property>
+
+      <!-- Drop and re-create the database schema on startup -->
+      <!-- <property name="hbm2ddl.auto">create</property> -->
+
+     <mapping resource="hibernate/user.hbm.xml"/>
+         
+</session-factory>
+
 </hibernate-configuration>
+

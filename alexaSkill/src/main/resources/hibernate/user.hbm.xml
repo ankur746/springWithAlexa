@@ -1,1 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="alexa.model.user" table="admin">
+		<!--  id name="username" column="username"></id-->
+        <composite-id>
+		<key-property name="username" column="username"  />
+		<key-property name="role" column="role" />
+		</composite-id>
+
+        <property name="name" column="name"/>
+        <property name="password" column="password"/>
+         <property name="active" column="active"/>
+         <property name="token" column="token"/>      
+         <!--  property name="role" column="role"/-->
+</class>
+</hibernate-mapping>
